@@ -1,0 +1,17 @@
+# Environment and configuration files
+config.js
+.env
+.env.local
+
+# Firebase config with real credentials
+firebase-config.js
+
+# macOS
+.DS_Store
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

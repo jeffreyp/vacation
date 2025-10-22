@@ -1,13 +1,6 @@
-// Firebase configuration - YOU NEED TO REPLACE THESE WITH YOUR OWN VALUES
-// See README.md for setup instructions
-const firebaseConfig = {
-    apiKey: "AIzaSyCCaTuj37iBAkPBi7F_bEoFsAm-qMTxHkA",
-    authDomain: "prattvacations-b03a1.firebaseapp.com",
-    projectId: "prattvacations-b03a1",
-    storageBucket: "prattvacations-b03a1.appspot.com",
-    messagingSenderId: "617668195871",
-    appId: "1:617668195871:web:dec271243b2b81c434c72a"
-};
+// Import Firebase configuration
+// Make sure to create config.js with your Firebase credentials
+import firebaseConfig from './config.js';
 
 // Import Firebase modules from CDN
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
