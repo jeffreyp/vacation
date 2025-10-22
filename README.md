@@ -72,8 +72,13 @@ service cloud.firestore {
 
 ### 6. Configure the App
 
-1. Open `app.js` in your text editor
-2. Replace the placeholder values in `firebaseConfig` with your actual values:
+1. Copy the config template file:
+   ```bash
+   cp config.template.js config.js
+   ```
+
+2. Open `config.js` in your text editor (NOT `app.js`)
+3. Replace the placeholder values with your actual Firebase values from step 5:
 
 ```javascript
 const firebaseConfig = {
@@ -85,6 +90,8 @@ const firebaseConfig = {
     appId: "1:123456789:web:abcdef123456"
 };
 ```
+
+**IMPORTANT**: The `config.js` file is gitignored and should NEVER be committed to git. Only modify this file locally.
 
 ### 7. Deploy to GitHub Pages
 
