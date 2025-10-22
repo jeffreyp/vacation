@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Auth Section */
+.auth-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 100px;
+}
+
+.auth-container h1 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#login-form input {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#login-form input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Main Section */
+header {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #333;
+    font-size: 28px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.add-vacation-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.add-vacation-card h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 20px;
+}
+
+#add-vacation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#add-vacation-form input,
+#add-vacation-form select {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#add-vacation-form input:focus,
+#add-vacation-form select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Buttons */
+button {
+    padding: 12px 24px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #5568d3;
+}
+
+button.secondary {
+    background: #6c757d;
+}
+
+button.secondary:hover {
+    background: #5a6268;
+}
+
+button.logout {
+    background: #dc3545;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+button.logout:hover {
+    background: #c82333;
+}
+
+/* Vacations Container */
+.vacations-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vacations-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 20px;
+}
+
+#vacations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.vacation-item {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    transition: border-color 0.3s;
+}
+
+.vacation-item:hover {
+    border-color: #667eea;
+}
+
+.vacation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.vacation-info {
+    flex: 1;
+}
+
+.vacation-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.vacation-title a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.vacation-title a:hover {
+    text-decoration: underline;
+}
+
+.vacation-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.vacation-month {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vacation-author {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vote-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.vote-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    min-width: 80px;
+}
+
+.vote-btn.voted {
+    background: #28a745;
+}
+
+.vote-btn.voted:hover {
+    background: #218838;
+}
+
+.vote-count {
+    font-size: 14px;
+    color: #666;
+    font-weight: 600;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .auth-container {
+        padding: 30px 20px;
+        margin-top: 50px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .vacation-header {
+        flex-direction: column;
+    }
+
+    .vote-section {
+        align-self: flex-start;
+    }
+
+    .vacation-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

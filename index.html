@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Vacation Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Auth Section -->
+        <div id="auth-section">
+            <div class="auth-container">
+                <h1>🏖️ Family Vacation Planner</h1>
+                <div id="login-form">
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button id="login-btn">Sign In</button>
+                    <button id="signup-btn" class="secondary">Sign Up</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App Section -->
+        <div id="main-section" style="display: none;">
+            <header>
+                <h1>🏖️ Family Vacation Ideas</h1>
+                <button id="logout-btn" class="logout">Sign Out</button>
+            </header>
+
+            <main>
+                <!-- Add Vacation Form -->
+                <div class="add-vacation-card">
+                    <h2>Add a Vacation Idea</h2>
+                    <form id="add-vacation-form">
+                        <input type="text" id="vacation-title" placeholder="Vacation title *" required>
+                        <input type="url" id="vacation-link" placeholder="Link (optional)">
+                        <select id="vacation-month" required>
+                            <option value="">Select preferred month *</option>
+                            <option value="any">Any month (don't care)</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                        <button type="submit">Add Vacation Idea</button>
+                    </form>
+                </div>
+
+                <!-- Vacation List -->
+                <div class="vacations-container">
+                    <h2>Vacation Ideas</h2>
+                    <div id="vacations-list">
+                        <!-- Vacations will be loaded here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
