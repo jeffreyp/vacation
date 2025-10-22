@@ -196,6 +196,7 @@ function createVacationElement(id, vacation) {
 
     const hasVoted = vacation.votes && vacation.votes.includes(currentUser.email);
     const voteCount = vacation.voteCount || 0;
+    const isOwnIdea = vacation.createdBy === currentUser.email;
 
     const titleHTML = vacation.link
         ? `<a href="${vacation.link}" target="_blank" rel="noopener noreferrer">${vacation.title}</a>`
@@ -204,6 +205,22 @@ function createVacationElement(id, vacation) {
     const monthDisplay = vacation.preferredMonth === 'any'
         ? 'Any month'
         : vacation.preferredMonth;
+
+    // Determine vote button content
+    let voteButtonHTML;
+    if (isOwnIdea) {
+        voteButtonHTML = `
+            <button class="vote-btn" disabled>Your Idea</button>
+            <div class="vote-count">${voteCount} vote${voteCount !== 1 ? 's' : ''}</div>
+        `;
+    } else {
+        voteButtonHTML = `
+            <button class="vote-btn ${hasVoted ? 'voted' : ''}" data-id="${id}">
+                ${hasVoted ? '✓ Voted' : 'Vote'}
+            </button>
+            <div class="vote-count">${voteCount} vote${voteCount !== 1 ? 's' : ''}</div>
+        `;
+    }
 
     div.innerHTML = `
         <div class="vacation-header">
@@ -221,17 +238,16 @@ function createVacationElement(id, vacation) {
                 </div>
             </div>
             <div class="vote-section">
-                <button class="vote-btn ${hasVoted ? 'voted' : ''}" data-id="${id}">
-                    ${hasVoted ? '✓ Voted' : 'Vote'}
-                </button>
-                <div class="vote-count">${voteCount} vote${voteCount !== 1 ? 's' : ''}</div>
+                ${voteButtonHTML}
             </div>
         </div>
     `;
 
-    // Add vote button listener
-    const voteBtn = div.querySelector('.vote-btn');
-    voteBtn.addEventListener('click', () => toggleVote(id, hasVoted));
+    // Add vote button listener (only if not own idea)
+    if (!isOwnIdea) {
+        const voteBtn = div.querySelector('.vote-btn');
+        voteBtn.addEventListener('click', () => toggleVote(id, hasVoted));
+    }
 
     return div;
 }
@@ -241,25 +257,23 @@ async function toggleVote(vacationId, hasVoted) {
     const vacationRef = doc(db, 'vacations', vacationId);
 
     try {
+        // First get the current votes
+        const vacationDoc = await getDoc(vacationRef);
+        const currentVotes = vacationDoc.data().votes || [];
+
+        let newVotes;
         if (hasVoted) {
             // Remove vote
-            await updateDoc(vacationRef, {
-                votes: arrayRemove(currentUser.email),
-                voteCount: arrayRemove(currentUser.email).length
-            });
+            newVotes = currentVotes.filter(email => email !== currentUser.email);
         } else {
             // Add vote
-            await updateDoc(vacationRef, {
-                votes: arrayUnion(currentUser.email),
-                voteCount: arrayUnion(currentUser.email).length
-            });
+            newVotes = [...currentVotes, currentUser.email];
         }
 
-        // Update vote count
-        const vacationDoc = await getDoc(vacationRef);
-        const votes = vacationDoc.data().votes || [];
+        // Update both votes array and vote count in one operation
         await updateDoc(vacationRef, {
-            voteCount: votes.length
+            votes: newVotes,
+            voteCount: newVotes.length
         });
     } catch (error) {
         alert(`Error voting: ${error.message}`);
