@@ -75,13 +75,22 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-    <!-- Load config -->
-    <script src="config.js"></script>
-
     <!-- App JavaScript -->
     <script>
+        // Firebase configuration
+        // Note: Firebase web API keys are designed to be public and included in client code.
+        // Security is controlled by Firestore security rules, not by hiding the API key.
+        const firebaseConfig = {
+            apiKey: "AIzaSyCM8NLYkrhA3S7miRao8JdrWgFO8dVICTA",
+            authDomain: "prattvacations-b03a1.firebaseapp.com",
+            projectId: "prattvacations-b03a1",
+            storageBucket: "prattvacations-b03a1.appspot.com",
+            messagingSenderId: "617668195871",
+            appId: "1:617668195871:web:dec271243b2b81c434c72a"
+        };
+
         // Initialize Firebase
-        const app = firebase.initializeApp(window.firebaseConfig);
+        const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
 
