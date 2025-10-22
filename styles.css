@@ -27,14 +27,33 @@ body {
 }
 
 .auth-container h1 {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     color: #333;
+}
+
+.auth-instructions {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.auth-help {
+    color: #888;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.5;
 }
 
 #login-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 
 #login-form input {

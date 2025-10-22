@@ -66,26 +66,71 @@ onAuthStateChanged(auth, (user) => {
 
 // Sign Up
 signupBtn.addEventListener('click', async () => {
-    const email = emailInput.value;
+    const email = emailInput.value.trim();
     const password = passwordInput.value;
+
+    if (!email) {
+        alert('Please enter an email address');
+        return;
+    }
+
+    if (!password) {
+        alert('Please enter a password');
+        return;
+    }
+
+    if (password.length < 6) {
+        alert('Password must be at least 6 characters');
+        return;
+    }
 
     try {
         await createUserWithEmailAndPassword(auth, email, password);
         alert('Account created successfully!');
+        emailInput.value = '';
+        passwordInput.value = '';
     } catch (error) {
-        alert(`Error: ${error.message}`);
+        let errorMessage = error.message;
+        if (error.code === 'auth/invalid-email') {
+            errorMessage = 'Please enter a valid email address (e.g., user@example.com)';
+        } else if (error.code === 'auth/email-already-in-use') {
+            errorMessage = 'This email is already registered. Try signing in instead.';
+        } else if (error.code === 'auth/weak-password') {
+            errorMessage = 'Password is too weak. Use at least 6 characters.';
+        }
+        alert(`Error: ${errorMessage}`);
     }
 });
 
 // Sign In
 loginBtn.addEventListener('click', async () => {
-    const email = emailInput.value;
+    const email = emailInput.value.trim();
     const password = passwordInput.value;
+
+    if (!email) {
+        alert('Please enter an email address');
+        return;
+    }
+
+    if (!password) {
+        alert('Please enter a password');
+        return;
+    }
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-        alert(`Error: ${error.message}`);
+        let errorMessage = error.message;
+        if (error.code === 'auth/invalid-email') {
+            errorMessage = 'Please enter a valid email address';
+        } else if (error.code === 'auth/user-not-found') {
+            errorMessage = 'No account found with this email. Try signing up first.';
+        } else if (error.code === 'auth/wrong-password') {
+            errorMessage = 'Incorrect password. Please try again.';
+        } else if (error.code === 'auth/invalid-credential') {
+            errorMessage = 'Invalid email or password. Please check and try again.';
+        }
+        alert(`Error: ${errorMessage}`);
     }
 });
 
